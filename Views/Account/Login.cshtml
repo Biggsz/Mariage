@@ -1,0 +1,30 @@
+@using Mariage.ViewModels
+@model LoginModel
+
+<form class="loginform" method="post">
+    <div asp-validation-summary="All" class="validation"></div>
+    <span asp-validation-for="Email" class="hidden"></span>
+    <div class="field">
+        <label asp-for="Email">            
+        </label>
+        <input asp-for="Email"/>
+    </div>
+    <span asp-validation-for="Password" class="hidden"></span>
+    <div class="field">
+        <label asp-for="Password">           
+        </label>
+         <input asp-for="Password"/>
+    </div>
+    <div class="buttons">
+        <input type="submit"/>
+    </div>
+    <div class="field">
+        <a asp-action="Register">Je ne me suis pas encore enregistré sur le site</a>
+    </div>    
+</form>
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+}
