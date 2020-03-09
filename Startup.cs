@@ -1,5 +1,6 @@
 using System;
 using Mariage.Data;
+using Mariage.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -26,7 +27,7 @@ namespace Mariage
             services.AddDbContext<MariageDbContext>(o =>
                 o.UseMySql(_configuration.GetConnectionString("DefaultConnectionString"), mo => mo.ServerVersion(new ServerVersion(new Version(10, 32, 22))))
             );
-            services.AddIdentity<IdentityUser,IdentityRole>()
+            services.AddIdentity<MariageUser,IdentityRole>()
                     .AddEntityFrameworkStores<MariageDbContext>();
 
             services.Configure<IdentityOptions>(options =>
