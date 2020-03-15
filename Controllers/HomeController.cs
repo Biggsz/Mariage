@@ -21,6 +21,12 @@ namespace Mariage.Controllers
             _dbContext = dbContext;
         }
 
+        [Authorize("AdminOnly")]
+        public IActionResult Admin()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();

@@ -41,6 +41,11 @@ namespace Mariage
                 options.SlidingExpiration = true;
             });
 
+            services.AddAuthorization(o =>
+            {
+                o.AddPolicy("AdminOnly", p => p.RequireClaim("Admin"));
+            });
+
 
             services.AddMvc(o => o.EnableEndpointRouting = false);
         }

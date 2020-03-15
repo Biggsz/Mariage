@@ -21,6 +21,10 @@
                 <li><a asp-controller="Home" asp-action="Info">Infos pratiques</a></li>
                 <li>Galerie photo</li>
                 <li>Liste de mariage</li>
+                @if(User.HasClaim("Admin","1"))
+                {
+                    <li><a asp-controller="Home" asp-action="Admin">Admin</a></li>
+                }
                 @if(User.Identity.IsAuthenticated)
                 {
                 <li><a asp-controller="Account" asp-action="Logout">Déconnexion</a></li>
