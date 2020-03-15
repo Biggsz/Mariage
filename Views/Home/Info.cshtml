@@ -1,0 +1,27 @@
+@using Mariage.Models
+@model MariageUser
+
+@if (Model.IsInvitedToLunch)
+{
+
+<p>
+Nous vous donnons rendez-vous à 10h40 à la maison des Mariages de Namur, Route Merveilleuse 71, 5000 Namur.
+</p>
+
+<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=maison%20des%20mariages%20NAmur&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.crocothemes.net"></a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+
+<p>
+Retrouvez-nous ensuite à 12h00 pour l'apéritif, suivi d'un dîner, au Domaine de la Bergerie à Lives-sur-Meuse, Rue de Mosanville 100, 5101 Namur.
+</p>
+
+<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=La%20Bergerie%20de%20Lives-sur-Meuse%20Rue%20de%20Mosanville%20100%2C%205101%20Namur%2C%20Belgique&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net">embedgooglemap.net</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+
+<p>
+Le Souper aura lieu à 19h, suivi d'une soirée dansante.
+</p>
+}
+else
+{
+    <p>Nous vous donnons rendez-vous à 18h Pour l'apéritif, suivi d'un souper, au Domaine de la Bergerie à Lives-sur-Meuse, Rue de Mosanville 100, 5101 Namur.</p>
+    <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=La%20Bergerie%20de%20Lives-sur-Meuse%20Rue%20de%20Mosanville%20100%2C%205101%20Namur%2C%20Belgique&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>Google Maps Generator by <a href="https://www.embedgooglemap.net">embedgooglemap.net</a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style></div>
+}

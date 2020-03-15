@@ -10,5 +10,10 @@ namespace Mariage.Controllers
         {
             return View();
         }
+
+        public IActionResult Info()
+        {
+            return View();
+        }
     }
 }

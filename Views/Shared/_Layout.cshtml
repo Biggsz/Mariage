@@ -13,10 +13,14 @@
     <div class="container">
         <nav>
             <ul>
-                <li><a>Index</a></li>
-                <li><a>Infos pratiques</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Index</a></li>
+                <li><a asp-controller="Home" asp-action="Info">Infos pratiques</a></li>
                 <li>Galerie photo</li>
                 <li>Liste de mariage</li>
+                @if(User.Identity.IsAuthenticated)
+                {
+                <li><a asp-controller="Account" asp-action="Logout">Déconnexion</a></li>
+                }
             </ul>
         </nav>
         <main>
