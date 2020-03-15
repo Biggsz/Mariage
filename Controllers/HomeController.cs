@@ -29,7 +29,7 @@ namespace Mariage.Controllers
         public async Task<IActionResult> Info()
         {
             var user = await _dbContext.Users.Include(u => u.Participation).SingleOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            ViewBag.Participation = user;
+            ViewBag.User = user;
             return View();
         }
 
