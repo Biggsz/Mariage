@@ -1,7 +1,9 @@
+using Mariage.Data;
 using Mariage.Models;
 using Mariage.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
@@ -10,9 +12,11 @@ namespace Mariage.Controllers
     public class AccountController : Controller
     {
         private readonly SignInManager<MariageUser> _signInManager;
-        public AccountController(SignInManager<MariageUser> signInManager)
+        private readonly MariageDbContext _dbContext;
+        public AccountController(SignInManager<MariageUser> signInManager, MariageDbContext dbContext)
         {
             _signInManager = signInManager;
+            _dbContext = dbContext;
         }
 
         public IActionResult Login(Uri returnUrl)
@@ -60,6 +64,12 @@ namespace Mariage.Controllers
                 var result = await _signInManager.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var participation = await _dbContext.Participations.SingleOrDefaultAsync(p => p.FirstName.ToUpper() == model.FirstName.ToUpper() && p.LastName.ToUpper() == model.LastName.ToUpper());
+                    if (participation != null)
+                    {
+                        user.Participation = participation;
+                        await _dbContext.SaveChangesAsync();
+                    }
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl.ToString());
                 }
