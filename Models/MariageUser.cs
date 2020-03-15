@@ -6,6 +6,7 @@ namespace Mariage.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public bool CompletedForm { get; set; }
         public bool IsInvitedToLunch { get; set; }
         public bool WillAttendLunch { get; set; }
         public bool WillAttendDinner { get; set; }

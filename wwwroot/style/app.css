@@ -31,8 +31,7 @@ a {
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center;    
     height: 100%;
 }
 
@@ -57,15 +56,34 @@ main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     max-width: 1200px;
+    margin-top: 16px;
+}
+
+main.Login, main.Index {
+    margin-top: 0;
+    justify-content: space-around;
 }
 
 .content {    
     background-color: rgba(0,0,0,.5);
     color: white;
     padding: 1em;
-    text-align: center;
+    line-height: 1.5;
+}
+
+.content p {
+    margin-top: 16px;
+}
+
+.content .image {
+    margin: auto;
+    margin-top: 16px;
+    width: 600px;
+}
+
+img {
+    width: 100%;
 }
 
 h1 {
@@ -129,4 +147,14 @@ h2 {
 
 .validation-summary-errors li:before {
     content: "! ";
+}
+
+.embeddedmap {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.mapouter {
+    margin: auto;
+    margin-top: 16px;
 }
