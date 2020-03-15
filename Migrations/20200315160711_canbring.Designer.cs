@@ -3,14 +3,16 @@ using System;
 using Mariage.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mariage.Migrations
 {
     [DbContext(typeof(MariageDbContext))]
-    partial class MariageDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200315160711_canbring")]
+    partial class canbring
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -25,6 +27,15 @@ namespace Mariage.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<bool>("CanBringChildren")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("CanBringPlusOne")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("CompletedForm")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -35,6 +46,15 @@ namespace Mariage.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<bool>("IsInvitedToLunch")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("tinyint(1)");
@@ -50,9 +70,6 @@ namespace Mariage.Migrations
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
-                    b.Property<int?>("ParticipationId")
-                        .HasColumnType("int");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -61,6 +78,9 @@ namespace Mariage.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("PlusOne")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -72,6 +92,12 @@ namespace Mariage.Migrations
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
+                    b.Property<bool>("WillAttendDinner")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("WillAttendLunch")
+                        .HasColumnType("tinyint(1)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -81,47 +107,7 @@ namespace Mariage.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex");
 
-                    b.HasIndex("ParticipationId");
-
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("Mariage.Models.Participation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<bool>("CanBringChildren")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("CanBringPlusOne")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("CompletedForm")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("IsInvitedToLunch")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("PlusOne")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<bool>("WillAttendDinner")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("WillAttendLunch")
-                        .HasColumnType("tinyint(1)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Participations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -250,13 +236,6 @@ namespace Mariage.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("Mariage.Models.MariageUser", b =>
-                {
-                    b.HasOne("Mariage.Models.Participation", "Participation")
-                        .WithMany()
-                        .HasForeignKey("ParticipationId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

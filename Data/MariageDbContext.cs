@@ -10,5 +10,7 @@ namespace Mariage.Data
         {
 
         }
+
+        public DbSet<Participation> Participations { get; set; }
     }
 }

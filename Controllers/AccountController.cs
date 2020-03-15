@@ -55,9 +55,7 @@ namespace Mariage.Controllers
                 var user = new MariageUser
                 {
                     Email = model.Email,
-                    UserName = model.Email,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
+                    UserName = model.Email
                 };
                 var result = await _signInManager.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
