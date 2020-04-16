@@ -64,7 +64,7 @@ namespace Mariage.Controllers
                 var result = await _signInManager.UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var participation = await _dbContext.Participations.SingleOrDefaultAsync(p => p.FirstName.ToUpper() == model.FirstName.ToUpper() && p.LastName.ToUpper() == model.LastName.ToUpper());
+                    var participation = await _dbContext.Participations.SingleOrDefaultAsync(p => p.FirstName.ToUpper() == model.FirstName!.ToUpper() && p.LastName.ToUpper() == model.LastName!.ToUpper());
                     if (participation != null)
                     {
                         user.Participation = participation;

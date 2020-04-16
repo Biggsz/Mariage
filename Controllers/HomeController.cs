@@ -21,12 +21,6 @@ namespace Mariage.Controllers
             _dbContext = dbContext;
         }
 
-        [Authorize("AdminOnly")]
-        public IActionResult Admin()
-        {
-            return View();
-        }
-
         public IActionResult Index()
         {
             return View();
@@ -34,7 +28,7 @@ namespace Mariage.Controllers
 
         public async Task<IActionResult> Info()
         {
-            var user = await _dbContext.Users.Include(u => u.Participation).SingleOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            var user = await _dbContext.Users.Include(u => u.Participation).ThenInclude(p => p!.PlusOne).SingleOrDefaultAsync(u => u.UserName == User.Identity.Name);
             ViewBag.User = user;
             return View();
         }

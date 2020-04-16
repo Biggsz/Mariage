@@ -4,6 +4,7 @@
 
 @{
     var user = (MariageUser)ViewBag.User;
+    ViewBag.Title = "Invitation";
 }
 
 @if(user.Participation != null)
@@ -24,15 +25,8 @@
     }
     @if(!user.Participation.CompletedForm)
     {
-        <p>Merci de confirmer votre présence via le formulaire en dessous de la page.</p>
-    }
-    <div class="image"><img src="~/images/labergerie.jpg" alg="La Bergerie"/></div>
-    @if (user.Participation.CompletedForm)
-    {
-
-    }
-    else
-    {
+        <form>
+        <legend>Merci de confirmer votre présence.</legend>
         @if(user.Participation.IsInvitedToLunch)
         {
             <div class="field">
@@ -47,17 +41,35 @@
         @if(user.Participation.CanBringPlusOne)
         {
             <div class="field">
-                @Html.LabelFor(i => i.HasPlusOne)
-                @Html.CheckBoxFor(i => i.HasPlusOne, new{onchange="hasPlusOneChange(this);"})        
+                @if (user.Participation.PlusOne != null)
+                {
+                    var plusOne = user.Participation.PlusOne;
+                    @Html.LabelFor(i => i.HasPlusOne, $"Je confirme la présence de {plusOne.FirstName} {plusOne.LastName}")
+                }
+                else
+                {
+                    @Html.LabelFor(i => i.HasPlusOne)                
+                }
+                @Html.CheckBoxFor(i => i.HasPlusOne, new{onchange="hasPlusOneChange(this);"}) 
             </div>    
-            @if(user.Participation.IsInvitedToLunch)
+            @if(user.Participation.IsInvitedToLunch && user.Participation.PlusOne == null)
             {
                 <div id="plusone" class="field hidden">
-                    @Html.LabelFor(i=> i.PlusOne)
-                    @Html.EditorFor(i => i.PlusOne)
+                    @Html.LabelFor(i=> i.PlusOneFirstName)
+                    @Html.EditorFor(i => i.PlusOneFirstName)
+                </div>
+                <div id="plusone" class="field hidden">
+                    @Html.LabelFor(i=> i.PlusOneLastName)
+                    @Html.EditorFor(i => i.PlusOneLastName)
                 </div>
             }
         }
+        </form>
+    }
+    <div class="image"><img src="~/images/labergerie.jpg" alg="La Bergerie"/></div>
+    @if (user.Participation.CompletedForm)
+    {
+
     }
 }
 else

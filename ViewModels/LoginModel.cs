@@ -6,11 +6,11 @@ namespace Mariage.ViewModels
     {
         [EmailAddress(ErrorMessage="L'adresse email n'est pas valide.")]
         [Required(ErrorMessage="L'adresse email est obligatoire.")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Display(Name = "Mot de passe")]
         [DataType(DataType.Password)]
         [Required(ErrorMessage="Le mot de passe est obligatoire.")]
-        public string Password { get; set; }
+        public string? Password { get; set; }
     }
 }

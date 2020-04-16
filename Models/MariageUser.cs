@@ -5,6 +5,6 @@ namespace Mariage.Models
 {
     public class MariageUser : IdentityUser
     {
-        public virtual Participation Participation { get; set; }
+        public virtual Participation? Participation { get; set; }
     }
 }

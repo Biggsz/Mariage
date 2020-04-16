@@ -52,6 +52,27 @@ nav a:target {
     border-bottom: 1px solid white;
 }
 
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header .title{
+    font-weight: regular;
+    font-family: 'Great Vibes';
+    font-size: 2rem;
+}
+
+header .subtitle {
+    font-size: .75rem;
+    padding-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 2rem;
+}
+
 main {    
     flex-grow: 1;
     display: flex;
@@ -60,9 +81,21 @@ main {
     margin-top: 16px;
 }
 
-main.Login, main.Index {
+.Account-Login main, .Home-Index main {
     margin-top: 0;
     justify-content: space-around;
+}
+
+.Home-Index main h1 {
+        font-weight: regular;
+        font-family: 'Great Vibes';
+        font-size: 7rem;
+        padding: 1em;
+}
+
+.Home-Index main h2 {
+    font-size: 2rem;
+    padding: 1em;
 }
 
 .content {    
@@ -84,18 +117,6 @@ main.Login, main.Index {
 
 img {
     width: 100%;
-}
-
-h1 {
-    font-weight: regular;
-    font-family: 'Great Vibes';
-    font-size: 7rem;
-    padding: 1em;
-}
-
-h2 {
-    font-size: 2rem;
-    padding: 1em;
 }
 
 .buttons {
