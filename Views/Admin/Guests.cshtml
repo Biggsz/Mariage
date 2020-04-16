@@ -1,0 +1,42 @@
+@using Mariage.Models
+@using Mariage.Extensions
+
+@model ICollection<Participation>
+
+<table>
+    <thead>
+        <tr>
+            <td colspan="5">Configuration</td>
+            <td colspan="5">Réponse</td>
+        </tr>
+        <tr>
+            <td>Prénom</td>
+            <td>Nom</td>
+            <td>Midi</td>
+            <td>Accompagné</td>
+            <td>Enfants</td>
+            <td>Répondu</td>
+            <td>Midi</td>
+            <td>Soir</td>
+            <td>Accompagné</td>
+            <td>Enfants</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var participation in Model)
+        {
+            <tr>
+                <td>@participation.FirstName</td>
+                <td>@participation.LastName</td>
+                <td>@Html.YesNo(participation.IsInvitedToLunch)</td>
+                <td>@Html.YesNo(participation.CanBringPlusOne)</td>
+                <td>@Html.YesNo(participation.CanBringChildren)</td>
+                <td>@Html.YesNo(participation.CompletedForm)</td>
+                <td>@Html.YesNo(participation.WillAttendLunch)</td>
+                <td>@Html.YesNo(participation.WillAttendDinner)</td>
+                <td>@Html.YesNo(participation.PlusOne != null)</td>
+                <td>@participation.ChildrenCount</td>
+            </tr>
+        }
+    </tbody>
+</table>

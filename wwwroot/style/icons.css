@@ -1,0 +1,11 @@
+[class^="icon-"] {
+    display: inline-block;
+}
+
+.icon-yes:before {
+    content:'v';
+}
+
+.icon-no:before {
+    content:'x';
+}

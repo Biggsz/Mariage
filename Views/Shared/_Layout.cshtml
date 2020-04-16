@@ -10,6 +10,7 @@
         <title>@ViewBag.Title - Gilles &amp; Gaëlle</title>
         <link rel="stylesheet" href="/style/reset.css">
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Roboto&amp;display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/style/icons.css">
         <link rel="stylesheet" href="/style/app.css">
     </head>
     <body>
@@ -19,7 +20,7 @@
         <nav>
             <ul>
                 <li><a asp-controller="Home" asp-action="Index">Index</a></li>
-                <li><a asp-controller="Home" asp-action="Info">Invitation</a></li>
+                <li><a asp-controller="Home" asp-action="Invite">Invitation</a></li>
                 <li>Galerie photo</li>
                 <li>Liste de mariage</li>
                 @if(User.HasClaim("Admin","1"))

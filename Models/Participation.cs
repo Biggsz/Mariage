@@ -16,6 +16,7 @@ namespace Mariage.Models
         public bool IsInvitedToLunch { get; set; } = false;
         public bool WillAttendLunch { get; set; } = false;
         public bool WillAttendDinner { get; set; } = false;
+        public int? ChildrenCount { get; set; }
         public Participation? PlusOne { get; set; }
     }
 }

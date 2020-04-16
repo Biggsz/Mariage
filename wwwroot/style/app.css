@@ -103,6 +103,11 @@ main {
     color: white;
     padding: 1em;
     line-height: 1.5;
+    min-width: 700px;
+}
+
+.Home-Index .content {
+    text-align: center;
 }
 
 .content p {
@@ -144,10 +149,6 @@ img {
     width: 100%;    
 }
 
-.loginform input:not([type="submit"]) {
-    
-}
-
 .loginform input[type="submit"] {
     background-color : white;
     margin: 8px 0;
@@ -178,4 +179,24 @@ img {
 .mapouter {
     margin: auto;
     margin-top: 16px;
+}
+
+table {
+    width: 100%;
+}
+
+table tr:nth-child(odd) {
+    background-color: rgba(255,255,255,.3);
+}
+
+table tr:hover {
+    background-color: rgba(255,255,255,.5);
+}
+
+thead {
+    border: 2px solid white;
+}
+
+td {
+    border-left: 1px dotted white;
 }

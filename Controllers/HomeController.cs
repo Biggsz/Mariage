@@ -26,7 +26,7 @@ namespace Mariage.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Info()
+        public async Task<IActionResult> Invite()
         {
             var user = await _dbContext.Users.Include(u => u.Participation).ThenInclude(p => p!.PlusOne).SingleOrDefaultAsync(u => u.UserName == User.Identity.Name);
             ViewBag.User = user;
