@@ -4,8 +4,10 @@
 
 .icon-yes:before {
     content:'v';
+    color: yellowgreen;
 }
 
 .icon-no:before {
     content:'x';
+    color: red;
 }

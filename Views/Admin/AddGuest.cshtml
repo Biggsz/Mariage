@@ -1,0 +1,17 @@
+@using Mariage.Models
+@model Participation
+
+<form method="post">
+    <div class="participation">
+        <div class="participation-field">@Html.EditorFor(p => p.FirstName)</div>
+        <div class="participation-field">@Html.EditorFor(p => p.LastName)</div>
+        <div class="participation-field">@Html.EditorFor(p => p.IsInvitedToLunch)</div>
+        <div class="participation-field">@Html.EditorFor(p => p.CanBringPlusOne)</div>
+        <div class="participation-field">@Html.EditorFor(p => p.CanBringChildren)</div>
+        <div class="participation-field">@Html.EditorFor(p => p.CompletedForm)</div>
+        <div class="participation-field">@Html.EditorFor(p => p.WillAttendLunch)</div>
+        <div class="participation-field">@Html.EditorFor(p => p.WillAttendDinner)</div>
+        <div class="participation-field"></div>
+        <div class="participation-field">@Html.EditorFor(p => p.ChildrenCount)</div>
+    </div>
+</form>

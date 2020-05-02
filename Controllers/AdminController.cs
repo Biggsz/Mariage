@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Mariage.Data;
+using Mariage.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,17 @@ namespace Mariage.Controllers
         {
             var guests = await _dbContext.Participations.ToListAsync();
             return View(guests);
+        }
+
+        [HttpPost]
+        public IActionResult AddGuest(Participation model)
+        {
+            return View(model);
+        }
+
+        public IActionResult AddGuest()
+        {
+            return PartialView();
         }
     }
 }

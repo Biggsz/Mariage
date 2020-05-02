@@ -33,6 +33,7 @@ a {
     flex-direction: column;
     align-items: center;    
     height: 100%;
+    padding: 0 16px;
 }
 
 nav ul {
@@ -79,6 +80,11 @@ main {
     flex-direction: column;
     max-width: 1200px;
     margin-top: 16px;
+}
+
+.Admin-Guests main {
+    max-width: none;
+    width: 100%;
 }
 
 .Account-Login main, .Home-Index main {
@@ -199,4 +205,20 @@ thead {
 
 td {
     border-left: 1px dotted white;
+}
+
+
+.participations-header,.participation {
+    display: flex;
+    flex-basis: 0;
+}
+
+.participations-header-field,.participation-field {
+    flex: 1;
+    border: 1px solid white;
+    padding: 8px;
+}
+
+.participation-field input {
+    width: 100%;
 }
