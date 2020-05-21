@@ -24,7 +24,7 @@
         @foreach(var participation in Model)
         {
             <div class="participation">
-                <div class="participation-field">@participation.FirstName</div>
+                <div class="participation-field"><a class="popup-loader" asp-action="EditGuest" asp-route-id="@participation.Id">@participation.FirstName</a></div>
                 <div class="participation-field">@participation.LastName</div>
                 <div class="participation-field">@Html.YesNo(participation.IsInvitedToLunch)</div>
                 <div class="participation-field">@Html.YesNo(participation.CanBringPlusOne)</div>
@@ -38,7 +38,7 @@
         }
     </div>
 </table>
-<a id="addguest" href="@Url.Action("AddGuest")">Ajouter un invité</a>
+<a class="popup-loader" asp-action="AddGuest">Ajouter un invité</a>
 @section scripts {
     <script src="~/script/guests.js" asp-append-version="true">        
     </script>

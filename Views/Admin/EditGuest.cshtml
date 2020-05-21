@@ -1,0 +1,18 @@
+@using Mariage.ViewModels
+@model EditGuestViewModel
+
+<form asp-action="UpdateGuest" asp-route-id="@Model.Id" method="post">
+    
+        <div class="participation-field">@Html.LabelFor(p => p.FirstName)@Html.EditorFor(p => p.FirstName)</div>
+        <div class="participation-field">@Html.LabelFor(p => p.LastName)@Html.EditorFor(p => p.LastName)</div>
+        <div class="participation-field">@Html.LabelFor(p => p.IsInvitedToLunch)@Html.EditorFor(p => p.IsInvitedToLunch)</div>
+        <div class="participation-field">@Html.LabelFor(p => p.CanBringPlusOne)@Html.EditorFor(p => p.CanBringPlusOne)</div>
+        <div class="participation-field">@Html.LabelFor(p => p.CanBringChildren)@Html.EditorFor(p => p.CanBringChildren)</div>
+   <div class="buttons">
+        @if (Model.Id != 0)
+        {
+            <a asp-action="DeleteGuest" asp-route-id="@Model.Id">Supprimer</a>       
+        }
+        <input type="submit" />
+   </div>   
+</form>
