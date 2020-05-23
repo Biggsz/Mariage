@@ -15,13 +15,14 @@
             <div class="participations-header-field">Midi</div>
             <div class="participations-header-field">+1</div>
             <div class="participations-header-field">Enfants</div>
+            <div class="participations-header-field">Inscrit</div>
             <div class="participations-header-field">Répondu</div>
             <div class="participations-header-field">Midi</div>
             <div class="participations-header-field">Soir</div>
             <div class="participations-header-field">+1</div>
             <div class="participations-header-field">Enfants</div>
         </div>
-        @foreach(var participation in Model)
+        @foreach (var participation in Model)
         {
             <div class="participation">
                 <div class="participation-field"><a class="popup-loader" asp-action="EditGuest" asp-route-id="@participation.Id">@participation.FirstName</a></div>
@@ -29,6 +30,7 @@
                 <div class="participation-field">@Html.YesNo(participation.IsInvitedToLunch)</div>
                 <div class="participation-field">@Html.YesNo(participation.CanBringPlusOne)</div>
                 <div class="participation-field">@Html.YesNo(participation.CanBringChildren)</div>
+                <div class="participation-field">@Html.YesNo(participation.UserId != null)</div>
                 <div class="participation-field">@Html.YesNo(participation.CompletedForm)</div>
                 <div class="participation-field">@Html.YesNo(participation.WillAttendLunch)</div>
                 <div class="participation-field">@Html.YesNo(participation.WillAttendDinner)</div>
@@ -37,9 +39,9 @@
             </div>
         }
     </div>
-</table>
-<a class="popup-loader" asp-action="AddGuest">Ajouter un invité</a>
-@section scripts {
-    <script src="~/script/guests.js" asp-append-version="true">        
-    </script>
-}
+    </table>
+    <a class="popup-loader" asp-action="AddGuest">Ajouter un invité</a>
+    @section scripts {
+        <script src="~/script/guests.js" asp-append-version="true">
+        </script>
+    }
