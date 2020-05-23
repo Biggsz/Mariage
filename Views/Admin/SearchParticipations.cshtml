@@ -1,0 +1,7 @@
+﻿@using Mariage.Models
+@model ICollection<Participation>
+
+@foreach (var participation in Model)
+{
+    <div class="searchable-result" data-value="@participation.Id">@participation.FirstName @participation.LastName</div>
+}

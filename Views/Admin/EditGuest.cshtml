@@ -2,17 +2,25 @@
 @model EditGuestViewModel
 
 <form asp-action="UpdateGuest" asp-route-id="@Model?.Id" method="post">
-    
-        <div class="participation-field">@Html.LabelFor(p => p.FirstName)@Html.EditorFor(p => p.FirstName)</div>
-        <div class="participation-field">@Html.LabelFor(p => p.LastName)@Html.EditorFor(p => p.LastName)</div>
-        <div class="participation-field">@Html.LabelFor(p => p.IsInvitedToLunch)@Html.EditorFor(p => p.IsInvitedToLunch)</div>
-        <div class="participation-field">@Html.LabelFor(p => p.CanBringPlusOne)@Html.EditorFor(p => p.CanBringPlusOne)</div>
-        <div class="participation-field">@Html.LabelFor(p => p.CanBringChildren)@Html.EditorFor(p => p.CanBringChildren)</div>
-   <div class="buttons">
+
+    <div class="participation-field">@Html.LabelFor(p => p.FirstName)@Html.EditorFor(p => p.FirstName)</div>
+    <div class="participation-field">@Html.LabelFor(p => p.LastName)@Html.EditorFor(p => p.LastName)</div>
+    <div class="participation-field">@Html.LabelFor(p => p.IsInvitedToLunch)@Html.EditorFor(p => p.IsInvitedToLunch)</div>
+    <div class="participation-field">@Html.LabelFor(p => p.CanBringPlusOne)@Html.EditorFor(p => p.CanBringPlusOne)</div>
+    <div class="participation-field">@Html.LabelFor(p => p.CanBringChildren)@Html.EditorFor(p => p.CanBringChildren)</div>
+    <div class="participation-field searchable" data-url="@Url.Action("SearchParticipations")">
+        @Html.LabelFor(p => p.PlusOneId)
+        <input type="text" class="searchable-name" />
+        @Html.HiddenFor(p => p.PlusOneId, new { @class = "searchable-value" })
+        <div class="searchable-results">
+
+        </div>
+    </div>
+    <div class="buttons">
         @if (Model?.Id != null)
         {
-            <a asp-action="DeleteGuest" asp-route-id="@Model.Id">Supprimer</a>       
+            <a asp-action="DeleteGuest" asp-route-id="@Model.Id">Supprimer</a>
         }
         <input type="submit" />
-   </div>   
+    </div>
 </form>

@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Mariage.Data;
+using Mariage.Migrations;
 using Mariage.Models;
 using Mariage.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -35,11 +36,18 @@ namespace Mariage.Controllers
 		{
 			if (ModelState.IsValid)
 			{
+				Participation? plusOne = null;
+				if (model.PlusOneId.HasValue)
+				{
+					plusOne = await _dbContext.Participations.FindAsync(model.PlusOneId);					
+				}
+
 				var participation = new Participation(model.FirstName!, model.LastName!)
 				{
 					IsInvitedToLunch = model.IsInvitedToLunch,
 					CanBringChildren = model.CanBringChildren,
-					CanBringPlusOne = model.CanBringPlusOne
+					CanBringPlusOne = model.CanBringPlusOne,
+					PlusOne = plusOne
 				};
 
 				if (!id.HasValue)
@@ -55,6 +63,12 @@ namespace Mariage.Controllers
 				{
 					participation.Id = id.Value;
 					_dbContext.Participations.Update(participation);
+				}
+
+				if (plusOne != null)
+				{
+					plusOne.PlusOne = participation;
+					_dbContext.Participations.Update(plusOne);
 				}
 
 				await _dbContext.SaveChangesAsync();
@@ -89,5 +103,11 @@ namespace Mariage.Controllers
 		{
 			return PartialView("EditGuest");
 		}
+		public async Task<IActionResult> SearchParticipations(string search)
+		{
+			var results = await _dbContext.Participations.Where(p => (p.FirstName.ToUpper() + " " + p.LastName.ToUpper()).Contains(search.ToUpper())).ToListAsync();
+			return PartialView(results);
+		}
+
 	}
 }

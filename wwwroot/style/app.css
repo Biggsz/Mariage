@@ -3,13 +3,13 @@
 }
 
 html, body {
-    height:100%;
+    height: 100%;
     font-family: roboto;
 }
 
 a {
     color: white;
-    outline: none;  
+    outline: none;
 }
 
 .hidden {
@@ -31,7 +31,7 @@ a {
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center;
     height: 100%;
     padding: 0 16px;
 }
@@ -59,22 +59,22 @@ header {
     align-items: center;
 }
 
-header .title{
-    font-weight: regular;
-    font-family: 'Great Vibes';
-    font-size: 2rem;
-}
+    header .title {
+        font-weight: normal;
+        font-family: 'Great Vibes';
+        font-size: 2rem;
+    }
 
-header .subtitle {
-    font-size: .75rem;
-    padding-bottom: 2rem;
-}
+    header .subtitle {
+        font-size: .75rem;
+        padding-bottom: 2rem;
+    }
 
-header h1 {
-    font-size: 2rem;
-}
+    header h1 {
+        font-size: 2rem;
+    }
 
-main {    
+main {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -92,19 +92,19 @@ main {
     justify-content: space-around;
 }
 
-.Home-Index main h1 {
-        font-weight: regular;
+    .Home-Index main h1 {
+        font-weight: normal;
         font-family: 'Great Vibes';
         font-size: 7rem;
         padding: 1em;
-}
+    }
 
-.Home-Index main h2 {
-    font-size: 2rem;
-    padding: 1em;
-}
+    .Home-Index main h2 {
+        font-size: 2rem;
+        padding: 1em;
+    }
 
-.content {    
+.content {
     background-color: rgba(0,0,0,.5);
     color: white;
     padding: 1em;
@@ -144,23 +144,23 @@ img {
     margin-bottom: 16px;
 }
 
-.loginform label:after {
-    content: ' :';
-}
+    .loginform label:after {
+        content: ' :';
+    }
 
 .loginform input {
     font-size: 24px;
     padding: 8px;
     border-radius: 5px;
-    width: 100%;    
+    width: 100%;
 }
 
-.loginform input[type="submit"] {
-    background-color : white;
-    margin: 8px 0;
-}
+    .loginform input[type="submit"] {
+        background-color: white;
+        margin: 8px 0;
+    }
 
-.field-validation-error+.field>input {
+.field-validation-error + .field > input {
     border: 1px solid red;
 }
 
@@ -168,14 +168,14 @@ img {
     text-align: left;
 }
 
-.validation-summary-errors li {
-    color: red;
-    padding: 8px 0;
-}
+    .validation-summary-errors li {
+        color: red;
+        padding: 8px 0;
+    }
 
-.validation-summary-errors li:before {
-    content: "! ";
-}
+        .validation-summary-errors li:before {
+            content: "! ";
+        }
 
 .embeddedmap {
     text-align: center;
@@ -191,13 +191,13 @@ table {
     width: 100%;
 }
 
-table tr:nth-child(odd) {
-    background-color: rgba(255,255,255,.3);
-}
+    table tr:nth-child(odd) {
+        background-color: rgba(255,255,255,.3);
+    }
 
-table tr:hover {
-    background-color: rgba(255,255,255,.5);
-}
+    table tr:hover {
+        background-color: rgba(255,255,255,.5);
+    }
 
 thead {
     border: 2px solid white;
@@ -208,20 +208,20 @@ td {
 }
 
 
-.participations-header,.participation {
+.participations-header, .participation {
     display: flex;
     flex-basis: 0;
 }
 
-.participations-header-field,.participation-field {
+.participations-header-field, .participation-field {
     flex: 1;
     border: 1px solid white;
     padding: 8px;
 }
 
-.participation-field input {
-    width: 100%;
-}
+    .participation-field input {
+        width: 100%;
+    }
 
 .popup-container {
     position: absolute;
@@ -248,3 +248,20 @@ td {
 .close-button {
     cursor: pointer;
 }
+
+.searchable {
+    position: relative;
+}
+
+.searchable-results {
+    position: absolute;
+    width: 100%;
+}
+
+    .searchable-result {
+        padding: 8px;
+        background-color: white;
+        color: black;
+        cursor: pointer;
+        border-bottom: 1px solid black;
+    }
