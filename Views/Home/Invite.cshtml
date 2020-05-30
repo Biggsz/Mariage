@@ -7,66 +7,69 @@
     ViewBag.Title = "Invitation";
 }
 
-@if(user.Participation != null)
+@if (user.Participation != null)
 {
     @if (user.Participation.IsInvitedToLunch)
     {
         <p>
-        Nous vous donnons rendez-vous à 10h40 à la maison des Mariages de Namur, <a href="https://www.google.be/maps/place/Maison+des+Mariages+de+Namur/@@50.4565563,4.8524654,17z/data=!3m1!4b1!4m5!3m4!1s0x47c19973e8596431:0x98a26e3bb7886506!8m2!3d50.4565563!4d4.8546541">Route Merveilleuse 71, 5000 Namur</a>.
+            Nous vous donnons rendez-vous à 10h40 à la maison des Mariages de Namur, <a href="https://www.google.be/maps/place/Maison+des+Mariages+de+Namur/@@50.4565563,4.8524654,17z/data=!3m1!4b1!4m5!3m4!1s0x47c19973e8596431:0x98a26e3bb7886506!8m2!3d50.4565563!4d4.8546541">Route Merveilleuse 71, 5000 Namur</a>.
         </p>
         <p>
-        Retrouvez-nous ensuite à 12h00 pour l'apéritif, suivi d'un dîner, à La Bergerie de Lives-sur-Meuse, <a href="https://www.google.be/maps/place/La+Bergerie+de+Lives-sur-Meuse/@@50.4754954,4.9639276,17z/data=!3m1!4b1!4m8!3m7!1s0x47c1a216a3d5cc41:0xe55a0769f024af25!5m2!4m1!1i2!8m2!3d50.4754954!4d4.9661163">Rue de Mosanville 100, 5101 Namur</a>.
+            Retrouvez-nous ensuite à 12h00 pour l'apéritif, suivi d'un dîner, à La Bergerie de Lives-sur-Meuse, <a href="https://www.google.be/maps/place/La+Bergerie+de+Lives-sur-Meuse/@@50.4754954,4.9639276,17z/data=!3m1!4b1!4m8!3m7!1s0x47c1a216a3d5cc41:0xe55a0769f024af25!5m2!4m1!1i2!8m2!3d50.4754954!4d4.9661163">Rue de Mosanville 100, 5101 Namur</a>.
         </p>
         <p>Vous êtes également convié au buffet du soir ainsi qu'à la soirée dansante.</p>
     }
     else
     {
-        <p>Nous vous donnons rendez-vous à 18h pour l'apéritif, suivi d'un buffet et d'une soirée dansante,<br/> à La Bergerie de Lives-sur-Meuse, <a href="https://www.google.be/maps/place/La+Bergerie+de+Lives-sur-Meuse/@@50.4754954,4.9639276,17z/data=!3m1!4b1!4m8!3m7!1s0x47c1a216a3d5cc41:0xe55a0769f024af25!5m2!4m1!1i2!8m2!3d50.4754954!4d4.9661163">Rue de Mosanville 100, 5101 Namur</a>.</p>
+        <p>Nous vous donnons rendez-vous à 18h pour l'apéritif, suivi d'un buffet et d'une soirée dansante,<br /> à La Bergerie de Lives-sur-Meuse, <a href="https://www.google.be/maps/place/La+Bergerie+de+Lives-sur-Meuse/@@50.4754954,4.9639276,17z/data=!3m1!4b1!4m8!3m7!1s0x47c1a216a3d5cc41:0xe55a0769f024af25!5m2!4m1!1i2!8m2!3d50.4754954!4d4.9661163">Rue de Mosanville 100, 5101 Namur</a>.</p>
     }
-    @if(!user.Participation.CompletedForm)
+    @if (!user.Participation.CompletedForm)
     {
-        <form>
-        <legend>Merci de confirmer votre présence.</legend>
-        @if(user.Participation.IsInvitedToLunch)
-        {
-            <div class="field">
-                @Html.LabelFor(i => i.WillAttendLunch)
-                @Html.EditorFor(i => i.WillAttendLunch)
-            </div>
-        }
-        <div class="field">
-            @Html.LabelFor(i => i.WillAttendDinner)
-            @Html.EditorFor(i => i.WillAttendDinner)
-        </div>
-        @if(user.Participation.CanBringPlusOne)
-        {
-            <div class="field">
-                @if (user.Participation.PlusOne != null)
-                {
-                    var plusOne = user.Participation.PlusOne;
-                    @Html.LabelFor(i => i.HasPlusOne, $"Je confirme la présence de {plusOne.FirstName} {plusOne.LastName}")
-                }
-                else
-                {
-                    @Html.LabelFor(i => i.HasPlusOne)                
-                }
-                @Html.CheckBoxFor(i => i.HasPlusOne, new{onchange="hasPlusOneChange(this);"}) 
-            </div>    
-            @if(user.Participation.IsInvitedToLunch && user.Participation.PlusOne == null)
+        <form asp-action="Confirm" method="post">
+            <legend>Merci de confirmer votre présence.</legend>
+            @if (user.Participation.IsInvitedToLunch)
             {
-                <div id="plusone" class="field hidden">
-                    @Html.LabelFor(i=> i.PlusOneFirstName)
-                    @Html.EditorFor(i => i.PlusOneFirstName)
-                </div>
-                <div id="plusone" class="field hidden">
-                    @Html.LabelFor(i=> i.PlusOneLastName)
-                    @Html.EditorFor(i => i.PlusOneLastName)
+                <div class="field">
+                    @Html.LabelFor(i => i.WillAttendLunch)
+                    @Html.EditorFor(i => i.WillAttendLunch)
                 </div>
             }
-        }
+            <div class="field">
+                @Html.LabelFor(i => i.WillAttendDinner)
+                @Html.EditorFor(i => i.WillAttendDinner)
+            </div>
+            @if (user.Participation.CanBringPlusOne)
+            {
+                <div class="field">
+                    @if (user.Participation.PlusOne != null)
+                    {
+                        var plusOne = user.Participation.PlusOne;
+                        @Html.LabelFor(i => i.HasPlusOne, $"Je confirme la présence de {plusOne.FirstName} {plusOne.LastName}")
+                    }
+                    else
+                    {
+                        @Html.LabelFor(i => i.HasPlusOne)
+                    }
+                    @Html.CheckBoxFor(i => i.HasPlusOne, new { onchange = "hasPlusOneChange(this);" })
+                </div>
+                @if (user.Participation.IsInvitedToLunch && user.Participation.PlusOne == null)
+                {
+                    <div id="plusone" class="field hidden">
+                        @Html.LabelFor(i => i.PlusOneFirstName)
+                        @Html.EditorFor(i => i.PlusOneFirstName)
+                    </div>
+                    <div id="plusone" class="field hidden">
+                        @Html.LabelFor(i => i.PlusOneLastName)
+                        @Html.EditorFor(i => i.PlusOneLastName)
+                    </div>
+                }
+            }
+            <div class="buttons">
+                <input class="button" type="submit" />
+            </div>
         </form>
     }
-    <div class="image"><img src="~/images/labergerie.jpg" alg="La Bergerie"/></div>
+    <div class="image"><img src="~/images/labergerie.jpg" alg="La Bergerie" /></div>
     @if (user.Participation.CompletedForm)
     {
 
@@ -80,6 +83,6 @@ else
 }
 
 @section scripts {
-    <script src="~/script/invite.js" asp-append-version="true">        
+    <script src="~/script/invite.js" asp-append-version="true">
     </script>
 }

@@ -9,37 +9,71 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Mariage.Controllers
 {
-    [Authorize]
-    public class HomeController : Controller
-    {
-        private readonly UserManager<MariageUser> _userManager;
-        private readonly MariageDbContext _dbContext;
+	[Authorize]
+	public class HomeController : Controller
+	{
+		private readonly UserManager<MariageUser> _userManager;
+		private readonly MariageDbContext _dbContext;
 
-        public HomeController(UserManager<MariageUser> userManager, MariageDbContext dbContext)
-        {
-            _userManager = userManager;
-            _dbContext = dbContext;
-        }
+		public HomeController(UserManager<MariageUser> userManager, MariageDbContext dbContext)
+		{
+			_userManager = userManager;
+			_dbContext = dbContext;
+		}
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+		[HttpPost]
+		public async Task<IActionResult> Confirm(InvitationViewModel model)
+		{
+			if (ModelState.IsValid)
+			{
+				var user = await _dbContext.Users.Include(u => u.Participation).ThenInclude(p => p!.PlusOne).Include(u => u.Participation).ThenInclude(p => p!.PlusOne).SingleOrDefaultAsync(u => u.UserName == User.Identity.Name);
+				var participation = user.Participation;
+				if (participation != null)
+				{
+					participation.CompletedForm = true;
+					participation.WillAttendDinner = model.WillAttendDinner;
+					participation.WillAttendLunch = participation.IsInvitedToLunch ? model.WillAttendLunch : false;
+					participation.ChildrenCount = participation.CanBringChildren ? model.Children : 0;
+					if ((participation.CanBringPlusOne || participation.PlusOne != null) && model.HasPlusOne)
+					{
+						Participation? plusOne = null;
+						if (participation.PlusOne != null)
+						{
+							plusOne = participation.PlusOne;
+						}
+						else if (participation.PlusOne == null && !string.IsNullOrEmpty(model.PlusOneFirstName) && !string.IsNullOrEmpty(model.PlusOneLastName))
+						{
+							plusOne = new Participation(model.PlusOneFirstName, model.PlusOneLastName);
+							participation.PlusOne = plusOne;
+						}
 
-        public async Task<IActionResult> Invite()
-        {
-            var user = await _dbContext.Users.Include(u => u.Participation).ThenInclude(p => p!.PlusOne).SingleOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            ViewBag.User = user;
-            return View();
-        }
+						if (plusOne != null)
+						{
+							plusOne.CompletedForm = true;
+							plusOne.WillAttendDinner = model.WillAttendDinner;
+							plusOne.WillAttendLunch = plusOne.IsInvitedToLunch ? model.WillAttendLunch : false;
+						}
 
-        [HttpPost]
-        public async Task<IActionResult> Info(InvitationViewModel model)
-        {
-            var user = await _dbContext.Users.Include(u => u.Participation).SingleOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            ViewBag.User = user;
-            return View(model);
-        }
+						_dbContext.Update(participation);
+						await _dbContext.SaveChangesAsync();
+					}
+				}
+				return RedirectToAction("Invite");
+			}
+			return View("Invite", model);
+		}
 
-    }
+		public IActionResult Index()
+		{
+			return View();
+		}
+
+		public async Task<IActionResult> Invite()
+		{
+			var user = await _dbContext.Users.Include(u => u.Participation).ThenInclude(p => p!.PlusOne).SingleOrDefaultAsync(u => u.UserName == User.Identity.Name);
+			ViewBag.User = user;
+			return View();
+		}
+
+	}
 }

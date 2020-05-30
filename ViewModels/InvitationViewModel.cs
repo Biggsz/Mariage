@@ -11,10 +11,8 @@ namespace Mariage.ViewModels
         public bool WillAttendDinner { get; set; } = false;
         [DisplayName("Je serai accompagné (conjoint/partenaire).")]
         public bool HasPlusOne { get; set; } = false;
-        [Required]
         [DisplayName("Prénom :")]
         public string? PlusOneFirstName { get; set; }
-        [Required]
         [DisplayName("Nom :")]
         public string? PlusOneLastName { get; set; }
         [DisplayName("Nombre d'enfants :")]
