@@ -33,8 +33,11 @@ namespace Mariage
 			services.AddIdentity<MariageUser, IdentityRole>()
 							.AddEntityFrameworkStores<MariageDbContext>();
 
-			services.Configure<IdentityOptions>(options =>
+			services.Configure<IdentityOptions>(o =>
 			{
+				o.Password.RequireUppercase = false;
+				o.Password.RequireNonAlphanumeric = false;
+				o.Password.RequireLowercase = false;
 			});
 
 			services.ConfigureApplicationCookie(options =>
