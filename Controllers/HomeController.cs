@@ -44,6 +44,8 @@ namespace Mariage.Controllers
 						else if (participation.PlusOne == null && !string.IsNullOrEmpty(model.PlusOneFirstName) && !string.IsNullOrEmpty(model.PlusOneLastName))
 						{
 							plusOne = new Participation(model.PlusOneFirstName, model.PlusOneLastName);
+							plusOne.IsInvitedToLunch = participation.IsInvitedToLunch;
+							plusOne.PlusOne = participation;
 							participation.PlusOne = plusOne;
 						}
 

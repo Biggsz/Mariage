@@ -54,13 +54,15 @@
                 </div>
                 @if (user.Participation.IsInvitedToLunch && user.Participation.PlusOne == null)
                 {
-                    <div id="plusone" class="field hidden">
-                        @Html.LabelFor(i => i.PlusOneFirstName)
-                        @Html.EditorFor(i => i.PlusOneFirstName)
-                    </div>
-                    <div id="plusone" class="field hidden">
-                        @Html.LabelFor(i => i.PlusOneLastName)
-                        @Html.EditorFor(i => i.PlusOneLastName)
+                    <div id="plusone" class="hidden">
+                        <div class="field">
+                            @Html.LabelFor(i => i.PlusOneFirstName)
+                            @Html.EditorFor(i => i.PlusOneFirstName)
+                        </div>
+                        <div class="field">
+                            @Html.LabelFor(i => i.PlusOneLastName)
+                            @Html.EditorFor(i => i.PlusOneLastName)
+                        </div>
                     </div>
                 }
             }
