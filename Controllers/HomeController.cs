@@ -65,6 +65,7 @@ namespace Mariage.Controllers
 			return View("Invite", model);
 		}
 
+		[AllowAnonymous]
 		public IActionResult Gift()
 		{
 			return View();
