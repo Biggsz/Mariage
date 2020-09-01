@@ -65,6 +65,11 @@ namespace Mariage.Controllers
 			return View("Invite", model);
 		}
 
+		public IActionResult Gift()
+		{
+			return View();
+		}
+
 		public IActionResult Index()
 		{
 			return View();
