@@ -21,7 +21,7 @@
             <ul>
                 <li><a asp-controller="Home" asp-action="Index">Index</a></li>
                 <li><a asp-controller="Home" asp-action="Invite">Invitation</a></li>
-                <li>Galerie photo</li>
+                <li><a asp-controller="Home" asp-action="Gallery">Galerie photo</a></li>
                 <li><a asp-controller="Home" asp-action="Gift">Liste de mariage</a></li>
                 @if(User.HasClaim("Admin","1"))
                 {

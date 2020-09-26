@@ -65,6 +65,11 @@ namespace Mariage.Controllers
 			return View("Invite", model);
 		}
 
+		public IActionResult Gallery()
+		{
+			return Redirect("https://photos.app.goo.gl/5MBcfEQ5J8mBvv3n8");
+		}
+
 		[AllowAnonymous]
 		public IActionResult Gift()
 		{
