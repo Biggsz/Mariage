@@ -23,60 +23,8 @@
     <p>
         Nous attirons votre attention sur le fait que nous serons soumis aux règles actuellement en vigeur dans secteur de l'HORECA, c'est à dire désinfectant pour les mains, port du masque obligatoire à part assis à table, et limitation des contacts rapprochés (donc malheureusement pas de soirée dansante).
     </p>
-    @if (!user.Participation.CompletedForm)
-    {
-        <br/><br/>
-        <form asp-action="Confirm" method="post">
-            <legend>Merci de confirmer votre présence.</legend>
-            @if (user.Participation.IsInvitedToLunch)
-            {
-                <div class="field">
-                    @Html.LabelFor(i => i.WillAttendLunch)
-                    @Html.EditorFor(i => i.WillAttendLunch)
-                </div>
-            }
-            <div class="field">
-                @Html.LabelFor(i => i.WillAttendDinner)
-                @Html.EditorFor(i => i.WillAttendDinner)
-            </div>
-            @if (user.Participation.CanBringPlusOne)
-            {
-                <div class="field">
-                    @if (user.Participation.PlusOne != null)
-                    {
-                        var plusOne = user.Participation.PlusOne;
-                        @Html.LabelFor(i => i.HasPlusOne, $"Je confirme la présence de {plusOne.FirstName} {plusOne.LastName}")
-                    }
-                    else
-                    {
-                        @Html.LabelFor(i => i.HasPlusOne)
-                    }
-                    @Html.CheckBoxFor(i => i.HasPlusOne, new { onchange = "hasPlusOneChange(this);" })
-                </div>
-                @if (user.Participation.IsInvitedToLunch && user.Participation.PlusOne == null)
-                {
-                    <div id="plusone" class="hidden">
-                        <div class="field">
-                            @Html.LabelFor(i => i.PlusOneFirstName)
-                            @Html.EditorFor(i => i.PlusOneFirstName)
-                        </div>
-                        <div class="field">
-                            @Html.LabelFor(i => i.PlusOneLastName)
-                            @Html.EditorFor(i => i.PlusOneLastName)
-                        </div>
-                    </div>
-                }
-            }
-            <div class="buttons">
-                <input class="button" type="submit" />
-            </div>
-        </form>
-    }
+    
     <div class="image"><img src="~/images/labergerie.jpg" alg="La Bergerie" /></div>
-    @if (user.Participation.CompletedForm)
-    {
-
-    }
 }
 else
 {
